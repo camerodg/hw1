@@ -9,18 +9,33 @@ To test your program write a separate .cpp file and #include
 split.h.  **Do NOT add main() to this file**.  When you submit
 the function below should be the only one in this file.
 */
-
+#include <cstddef>
 #include "split.h"
 
 /* Add a prototype for a helper function here if you need */
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
-
+  //Checks to see if the list is empty
+  if(!in)
+  {
+		odds = evens = nullptr;
+    return;
+  }
+//Evens Case
+if(in->value % 2 == 0)
+		{
+		evens = in;
+		in = in->next;
+		evens->next = NULL;
+		split(in,odds,evens->next);
+	}
+//Odds Case
+	else
+	{
+   	odds = in;
+	 	in = in->next;
+	 	odds->next = NULL;
+	 	split(in,odds->next,evens);
+	}
 }
-
-/* If you needed a helper function, write it here */
-
-// WRITE YOUR CODE HERE
